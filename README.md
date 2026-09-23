@@ -1,303 +1,157 @@
-# 💳 FinFlow — Payment Settlement & Reconciliation Engine
+# 💳 FinFlow
 
-A **microservices-based payment processing backend** designed to simulate real-world financial transaction processing, settlement, and reconciliation workflows.
+> A production-inspired distributed payment processing platform built using Java 21, Spring Boot, and MySQL.
 
-FinFlow focuses on building a **secure, scalable, and modular backend architecture** using Java and Spring Boot.
+<p align="center">
+    <img src="docs/architecture/finflow-system-architecture.png" width="100%">
+</p>
 
----
+<p align="center">
 
-## 🏗️ System Architecture
+![Java](https://img.shields.io/badge/Java-21-orange)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.x-brightgreen)
+![MySQL](https://img.shields.io/badge/MySQL-8-blue)
+![Spring Security](https://img.shields.io/badge/Spring_Security-JWT-green)
+![Microservices](https://img.shields.io/badge/Architecture-Microservices-purple)
+![Maven](https://img.shields.io/badge/Maven-Build-red)
+![REST API](https://img.shields.io/badge/API-REST-success)
 
-![FinFlow System Architecture](docs/architecture/finflow-system-architecture.png)
-
-FinFlow follows a **microservices architecture** where each business capability is developed and deployed as an independent service.
-
-The system consists of:
-
-- **API Gateway** — Single entry point for client requests
-- **Auth Service** — User registration, login, JWT authentication
-- **Account Service** — Account and balance management
-- **Transaction Service** — Payment and money transfer processing
-- **Settlement Service** — Settlement creation and processing
-- **Reconciliation Service** — Transaction and settlement reconciliation
-- **Eureka Server** — Service discovery and registration
+</p>
 
 ---
 
-## 📌 About FinFlow
+## 📖 About
 
-FinFlow is a backend system designed to model a simplified **payment processing and settlement platform**.
+FinFlow is a **production-inspired distributed payment processing platform** designed to simulate how modern financial systems process digital payments.
 
-The project demonstrates how modern financial systems can be built using **Spring Boot Microservices**, with separate services responsible for authentication, accounts, transactions, settlements, and reconciliation.
+The platform is built using **Spring Boot Microservices**, with independent services responsible for authentication, account management, transaction processing, settlement, and reconciliation.
 
-The system supports a complete payment workflow:
-
-**Authentication → Account → Transaction → Settlement → Reconciliation**
+The project focuses on **clean architecture, secure backend development, service discovery, inter-service communication, and real-world payment workflows**.
 
 ---
 
-## 🎯 Vision
+## ✨ Vision
 
-To build a secure and scalable distributed payment processing platform that demonstrates real-world backend engineering concepts such as:
-
-- Microservices Architecture
-- Secure Authentication & Authorization
-- Transaction Processing
-- Settlement Management
-- Financial Reconciliation
-- Service Discovery
-- Inter-Service Communication
+The objective of FinFlow is to build a modular and scalable distributed payment processing platform while applying **clean architecture, secure communication, and enterprise backend development practices**.
 
 ---
 
 ## 💡 Why FinFlow?
 
-Financial systems require more than simply transferring money.
+Most payment processing projects focus primarily on CRUD operations.
 
-They need to ensure:
+FinFlow was created to explore how distributed payment platforms are designed by implementing concepts such as **microservices architecture, JWT authentication, transaction processing, service discovery, settlement, reconciliation, and inter-service communication**.
 
-- Secure user authentication
-- Role-based authorization
-- Accurate transaction processing
-- Reliable account balance updates
-- Settlement tracking
-- Transaction and settlement reconciliation
-- Communication between independent services
-
-FinFlow brings these concepts together into a single distributed backend system.
+The objective is not only to build APIs, but also to understand the engineering principles behind modern financial systems.
 
 ---
 
 ## 🎯 Project Objectives
 
-- Build a modular **microservices-based payment backend**
-- Implement secure authentication using **JWT**
-- Implement **role-based authorization**
-- Manage accounts and balances
-- Process financial transactions securely
-- Implement settlement processing
-- Implement transaction reconciliation
-- Implement service discovery using **Eureka**
-- Implement inter-service communication
-- Demonstrate an end-to-end payment workflow
+The primary goal of FinFlow is to strengthen backend engineering skills by designing and implementing a production-inspired distributed payment platform.
+
+Key objectives include:
+
+- Build scalable RESTful APIs
+- Follow Clean Layered Architecture
+- Implement secure authentication and authorization
+- Design modular microservices
+- Simulate real-world payment workflows
+- Implement service discovery and inter-service communication
+- Practice maintainable backend design and documentation
 
 ---
 
-## 🧠 Design Philosophy
+## 🏛️ Design Philosophy
 
-The project follows a **layered architecture** within each microservice.
+FinFlow is designed by following software engineering principles that emphasize **maintainability, scalability, security, and clean architecture**.
 
-### Core Design Principles
+### Core Design Decisions
 
-- **Microservices Architecture**
-- **Layered Architecture**
-- **DTO-based communication**
-- **Repository Pattern**
-- **Service Layer for business logic**
-- **Global Exception Handling**
-- **UUID-based entity identification**
-- **BigDecimal for financial calculations**
-- **Input Validation**
-- **Constructor-based Dependency Injection**
-- **Stateless JWT Authentication**
+- **Microservices Architecture** – Separates major business capabilities into independently manageable services.
+- **Layered Architecture** – Separates responsibilities into Controller, Service, Mapper, and Repository layers.
+- **DTO Pattern** – Keeps API contracts independent from database entities.
+- **Repository Pattern** – Abstracts database access using Spring Data JPA.
+- **Business Logic in Service Layer** – Keeps controllers lightweight and focused on request handling.
+- **Global Exception Handling** – Provides consistent API error responses.
+- **JWT Authentication** – Enables stateless authentication across protected services.
+- **Role-Based Authorization** – Controls access to APIs based on user roles.
+- **UUID Primary Keys** – Provides globally unique identifiers suitable for distributed systems.
+- **BigDecimal for Monetary Values** – Prevents floating-point precision errors in financial calculations.
+- **Bean Validation** – Ensures invalid requests are rejected before reaching business logic.
+- **Constructor Injection** – Promotes loose coupling and easier testing.
+
+---
+
+## 📚 Documentation
+
+- 📐 [Architecture](docs/architecture.md)
+- 🗄️ [Database Design](docs/database-design.md)
+- 📚 [API Reference](docs/api-reference.md)
+- ⚙️ [System Design](docs/system-design.md)
+- 🚀 [Deployment Guide](docs/deployment.md)
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Backend
-
-- Java 21
-- Spring Boot
-- Spring Data JPA
-- Spring Security
-- Hibernate
-- Maven
-
-### Microservices & Cloud
-
-- Spring Cloud Gateway
-- Netflix Eureka
-- OpenFeign
-- Spring Cloud LoadBalancer
-- RestClient
-
-### Security
-
-- JWT
-- BCrypt
-- Role-Based Access Control
-
-### Database
-
-- MySQL
-
-### Testing & Development
-
-- JUnit
-- Postman
-- IntelliJ IDEA
-- Git & GitHub
+| Technology           | Version                     |
+| -------------------- | --------------------------- |
+| Java                 | 21                          |
+| Spring Boot          | 4.x                         |
+| Spring Security      | JWT                         |
+| MySQL                | 8.x                         |
+| Spring Cloud Gateway | Gateway                     |
+| Eureka               | Service Discovery           |
+| OpenFeign            | Inter-Service Communication |
+| RestClient           | Inter-Service Communication |
+| Hibernate            | ORM                         |
+| Maven                | Build Tool                  |
+| Git                  | Version Control             |
+| Postman              | API Testing                 |
 
 ---
 
 ## 📂 Project Structure
 
 ```text
-FinFlow - microservices
+FinFlow
 │
-├── AuthService/
-│   └── AuthService/
+├── AuthService
+│   └── AuthService
 │
-├── account-service/
-│   └── account-service/
+├── account-service
+│   └── account-service
 │
-├── apigateway/
-│   └── apigateway/
+├── apigateway
+│   └── apigateway
 │
-├── discovery-server/
-│   └── discovery-server/
+├── discovery-server
+│   └── discovery-server
 │
-├── transaction-services/
-│   └── transaction-services/
+├── transaction-services
+│   └── transaction-services
 │
-├── settlement-service/
-│   └── settlement-service/
+├── settlement-service
+│   └── settlement-service
 │
-├── reconciliation-service/
-│   └── reconciliation-service/
+├── reconciliation-service
+│   └── reconciliation-service
 │
-├── docs/
-│   └── architecture/
+├── docs
+│   └── architecture
 │       └── finflow-system-architecture.png
 │
-├── .gitignore
 └── README.md
 ```
 
 ---
 
-## 🔐 Key Features
+## 🚧 Project Status
 
-### 🔑 Authentication & Authorization
+FinFlow is actively being developed.
 
-- User registration
-- User login
-- BCrypt password encryption
-- JWT token generation
-- JWT validation
-- Role-based authorization
-- Protected APIs
-
-### 🏦 Account Management
-
-- Create accounts
-- Retrieve account details
-- Update account information
-- Balance management
-- Account status validation
-
-### 💸 Transaction Processing
-
-- Account-to-account transfers
-- Sender and receiver validation
-- Balance validation
-- Currency validation
-- Transaction status tracking
-- Transaction reference generation
-
-### 💰 Settlement Processing
-
-- Create settlements
-- Validate transaction details
-- Process settlements
-- Settlement status tracking
-- Duplicate settlement prevention
-
-### 🔍 Reconciliation
-
-- Compare transaction and settlement details
-- Calculate differences
-- Identify matched and mismatched records
-- Track reconciliation status
-
-### 🌐 Service Discovery
-
-Services register themselves with **Eureka Server**, allowing other services to discover them dynamically.
-
-### 🔄 Inter-Service Communication
-
-The project demonstrates synchronous communication between microservices using:
-
-- **RestClient**
-- **OpenFeign**
-- **Eureka Service Discovery**
-
-### 🚪 API Gateway
-
-The API Gateway provides a single entry point for client requests and handles:
-
-- Request routing
-- JWT validation
-- Authentication forwarding
-- Service discovery-based routing
-
----
-
-## 🔄 End-to-End Payment Flow
-
-```text
-Client
-   │
-   ▼
-API Gateway
-   │
-   ▼
-Authentication
-   │
-   ▼
-Transaction Service
-   │
-   ├──► Account Service
-   │       │
-   │       └── Update balances
-   │
-   ▼
-Settlement Service
-   │
-   ▼
-Reconciliation Service
-```
-
-A typical transaction follows:
-
-```text
-User Login
-    ↓
-JWT Generated
-    ↓
-Transaction Request
-    ↓
-Account Validation
-    ↓
-Balance Update
-    ↓
-Transaction Created
-    ↓
-Settlement Created
-    ↓
-Settlement Processed
-    ↓
-Reconciliation
-    ↓
-MATCHED / MISMATCH
-```
-
----
-
-## 📊 Project Status
-
-FinFlow currently includes the following implemented modules:
+Current implementation includes:
 
 - ✅ JWT Authentication & Authorization
 - ✅ Account Management
@@ -309,19 +163,11 @@ FinFlow currently includes the following implemented modules:
 - ✅ Inter-Service Communication
 - ✅ End-to-End Payment Workflow
 
+The core payment workflow has been implemented and tested across multiple microservices.
+
 ---
 
 ## 🚀 Getting Started
-
-### Prerequisites
-
-Make sure you have the following installed:
-
-- Java 21
-- Maven
-- MySQL
-- Git
-- Postman
 
 ### Clone the Repository
 
@@ -335,31 +181,29 @@ git clone https://github.com/Mayuri-pawar21/FinFlow-Microservices.git
 cd FinFlow-Microservices
 ```
 
-### Database Setup
+### Configure MySQL
 
-Create the MySQL database:
+Create a database named:
 
 ```sql
 CREATE DATABASE finflow;
 ```
 
-Configure the database credentials in the respective service `application.properties` files.
+Update the respective `application.properties` files with your database credentials.
 
-### Start the Services
+### Run the Services
 
 Start the services in the following order:
 
 ```text
-1. Discovery Server
-2. Auth Service
-3. Account Service
-4. Transaction Service
-5. Settlement Service
-6. Reconciliation Service
-7. API Gateway
+Discovery Server
+      ↓
+Auth / Account / Transaction / Settlement / Reconciliation
+      ↓
+API Gateway
 ```
 
-The API Gateway acts as the main entry point for API requests:
+The API Gateway will be available at:
 
 ```text
 http://localhost:8080
@@ -369,20 +213,19 @@ http://localhost:8080
 
 ## 🗺️ Roadmap
 
-- [x] Microservices Architecture
-- [x] JWT Authentication
-- [x] Transaction Processing
-- [x] Settlement Engine
-- [x] Reconciliation
-- [x] API Gateway
-- [x] Service Discovery
-- [x] Inter-Service Communication
-- [ ] Kafka Event Streaming
-- [ ] Docker Containerization
-- [ ] Swagger / OpenAPI Documentation
-- [ ] Resilience4j
-- [ ] Fraud Detection
-- [ ] Kubernetes Deployment
+- ✅ Account Management
+- ✅ JWT Authentication & Authorization
+- ✅ Transaction Processing
+- ✅ Settlement Engine
+- ✅ Reconciliation
+- ✅ API Gateway
+- ✅ Service Discovery
+- 🔄 Kafka Event Streaming
+- 🔄 Docker
+- 🔄 Swagger / OpenAPI
+- 🔄 Resilience4j
+- 🔄 Fraud Detection
+- 🔄 Kubernetes
 
 ---
 
@@ -393,6 +236,4 @@ http://localhost:8080
 B.E. Electronics & Computer Engineering  
 Pune Institute of Computer Technology (PICT)
 
----
-
-⭐ If you find this project interesting, feel free to explore the repository and connect with me.
+Passionate about **Java Backend Development, Distributed Systems, and System Design**.
