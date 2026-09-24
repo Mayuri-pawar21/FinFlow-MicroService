@@ -33,7 +33,11 @@ public class SecurityConfig {
                     SessionCreationPolicy.STATELESS))
 
             .authorizeHttpRequests(auth -> auth
-                .anyRequest().authenticated())
+            	    .requestMatchers(
+            	        "/swagger-ui/**",
+            	        "/v3/api-docs/**"
+            	    ).permitAll()
+            	    .anyRequest().authenticated())
 
             .addFilterBefore(
                 headerAuthenticationFilter,

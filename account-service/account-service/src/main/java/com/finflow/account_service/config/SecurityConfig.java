@@ -1,47 +1,46 @@
 package com.finflow.account_service.config;
 
-
-
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import com.finflow.account_service.security.HeaderAuthenticationFilter;	
-
-
-import org.springframework.context.annotation.Configuration;
-//import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
+import com.finflow.account_service.security.HeaderAuthenticationFilter;
 
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfig {
-	private final HeaderAuthenticationFilter headerAuthenticationFilter;
+
+    private final HeaderAuthenticationFilter headerAuthenticationFilter;
 
     public SecurityConfig(HeaderAuthenticationFilter headerAuthenticationFilter) {
         this.headerAuthenticationFilter = headerAuthenticationFilter;
     }
 
-	 @Bean
-	    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-		 http
-	        .csrf(csrf -> csrf.disable())
+        http
+            .csrf(csrf -> csrf.disable())
 
-	        .sessionManagement(session ->
-	                session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .sessionManagement(session ->
+                    session.sessionCreationPolicy(
+                            SessionCreationPolicy.STATELESS))
 
-	        .authorizeHttpRequests(auth -> auth
-	                .anyRequest().authenticated())
+            .authorizeHttpRequests(auth -> auth
+                    .requestMatchers(
+                            "/swagger-ui/**",
+                            "/v3/api-docs/**"
+                    ).permitAll()
+                    .anyRequest().authenticated())
 
-	        .addFilterBefore(
-	                headerAuthenticationFilter,
-	                UsernamePasswordAuthenticationFilter.class);	
+            .addFilterBefore(
+                    headerAuthenticationFilter,
+                    UsernamePasswordAuthenticationFilter.class);
 
-	    return http.build();
-	 }
+        return http.build();
+    }
 }

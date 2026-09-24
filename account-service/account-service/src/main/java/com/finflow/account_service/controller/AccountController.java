@@ -26,6 +26,7 @@ import com.finflow.account_service.dto.request.UpdateAccountRequest;
 import com.finflow.account_service.dto.response.AccountResponse;
 import com.finflow.account_service.service.AccountService;
 
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 
 @RestController
@@ -42,6 +43,7 @@ public class AccountController {
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<AccountResponse> createAccount(
+    		@Parameter(hidden = true)
     		@RequestHeader("X-User-Email") String email,
             @Valid @RequestBody CreateAccountRequest request) {
 
@@ -53,6 +55,7 @@ public class AccountController {
     @GetMapping
     @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public ResponseEntity<List<AccountResponse>> getAllAccounts(
+    		@Parameter(hidden = true)
             @RequestHeader("X-User-Email") String email) {
 
         return ResponseEntity.ok(accountService.getAccountsByUser(email));

@@ -1,6 +1,7 @@
 package com.finflow.apigateway.security;
 
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.http.HttpMethod;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.http.HttpHeaders;
@@ -17,17 +18,19 @@ public class JwtAuthenticationFilter  implements GlobalFilter, Ordered {
 	 @Override
 	    public Mono<Void> filter(ServerWebExchange exchange,
 	                             GatewayFilterChain chain) {
+		 String path = exchange.getRequest().getURI().getPath();
 
-	        String path = exchange.getRequest().getURI().getPath();
+		 if (path.startsWith("/api/auth/")) {
+		     return chain.filter(exchange);
+		 }
 
-	        // Public APIs
-	        if (path.startsWith("/api/auth/")) {
-	            return chain.filter(exchange);
-	        }
+		 if (exchange.getRequest().getMethod() == HttpMethod.OPTIONS) {
+		     return chain.filter(exchange);
+		 }
 
-	        String authHeader = exchange.getRequest()
-	                .getHeaders()
-	                .getFirst(HttpHeaders.AUTHORIZATION);
+		 String authHeader = exchange.getRequest()
+		         .getHeaders()
+		         .getFirst(HttpHeaders.AUTHORIZATION);
 
 	        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
 	            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
